@@ -245,8 +245,11 @@ can significantly affect generation.
     - Save Video
 
 # Component connection Chart
-    *the diagram shows how the basic components should connect o each other!
+    *the diagram shows how the basic components should connect to each other! 
 
+    Click the link below:
+
+https://github.com/SEIIV4LStudios/SEIIV4L-Comfy-AI-Video-Generator-Lab/blob/0d9564a8cd6e6562cc6ca203b34ae902c07095b2/text%20to%20video%20basic%20pipeline.pdf
     
 That's the system.
 
