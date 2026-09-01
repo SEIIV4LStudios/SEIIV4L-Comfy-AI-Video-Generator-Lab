@@ -253,6 +253,7 @@ can significantly affect generation.
   That's the system.
       *At this point you have the skills to create a basic AI text to video Generator utilizing those components*
 
+# (Development currently @):
 # AI Generator Performance
     *Now that you have your AI video engine generator, you must understand There are individual stages to performance/system productivity.*
   
@@ -282,21 +283,22 @@ can significantly affect generation.
   *Spotted a flowin in the infrastructure workflow pattern bottleneck using consensus client/execution client explanation flow reveals
   Every additional blocking validation layer creates:*
   
-  decision
-   ↓
-  wait
-   ↓
-  decision
-   ↓
-  wait
-   ↓
-  generation
-   ↓
-  wait
-   ↓
-  validation
-the design uses consensus client's for too many different responsibilities.
-Instead we aim to ensure there is one Coordinated State Of Authority:
+    decision
+     ↓
+    wait
+     ↓
+    decision
+     ↓
+    wait
+     ↓
+    generation
+     ↓
+    wait
+     ↓
+    validation
+
+  the design uses consensus client's for too many different responsibilities. so alternatively different stages need access to one shared consistency authority.
+  So now the infrastructure should ensure there is one Coordinated State Of Authority:
 
 ONE STATE AUTHORITY
         │
@@ -306,5 +308,26 @@ ONE STATE AUTHORITY
         ↓               ↑
     Quality Check ───────┘
 
-Much faster.
+  Much faster.
 
+*Click link below* to view One State Authority Pipeline design that will essentially allow coordination between each state change simutaneously.
+
+    https://github.com/SEIIV4LStudios/SEIIV4L-Comfy-AI-Video-Generator-Lab/blob/30ee59957abc753b9a737f981b43a85d18cf3888/SEIIV4L_AI_Video_Optimized_performance_Pipeline_Architecture.pdf
+  
+    # separation is way stronger than giving every stage its own “consensus client.”
+
+# Clean Keyframe
+    - That should be a major checkpoint in the architecture.Instead of sending questionable images farther down the expensive video pipeline:
+    - If the generated scene has the wrong perspective, wrong car, wrong character, etc., it gets rejected before Wan burns GPU time generating an entire clip.
+
+  Scene Request
+     ↓
+  Generate/Select Reference
+     ↓
+  CLEAN KEYFRAME GATE
+     ↓
+  only then
+     ↓
+  Wan I2V
+
+# Scene Inversion
