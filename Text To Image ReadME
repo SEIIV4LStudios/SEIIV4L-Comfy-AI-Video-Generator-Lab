@@ -1,0 +1,64 @@
+SEIIV4L-Comfy-AI-Video-Generator-Lab
+ # Text to Image ReadMe
+
+# Stable Text to Image Pipeline 
+                 ┌────────────────────────────┐
+                 │   Load Checkpoint          │
+                 │ v1-5-pruned-emaonly-fp16   │
+                 └──────┬─────────┬───────────┘
+                        │         │
+                 MODEL  │         │ CLIP
+                        │         │
+                        │    ┌────▼──────────────┐
+                        │    │ CLIP Text Encode  │
+                        │    │ Positive Prompt   │
+                        │    └────┬──────────────┘
+                        │         │
+                        │    ┌────▼──────────────┐
+                        │    │ CLIP Text Encode  │
+                        │    │ Negative Prompt   │
+                        │    └────┬──────────────┘
+                        │         │
+          ┌─────────────▼─────────▼──────┐
+          │          KSampler            │
+          │                              │
+          │ model    ← checkpoint        │
+          │ positive ← positive CLIP     │
+          │ negative ← negative CLIP     │
+          │ latent   ← Empty Latent      │
+          └──────────────┬───────────────┘
+                         │
+                         ▼
+                     LATENT
+                         │
+                         ▼
+                 ┌───────────────┐
+                 │  VAE Decode   │
+                 │ VAE ← loader  │
+                 └───────┬───────┘
+                         │
+                         ▼
+                   ┌───────────┐
+                   │Save Image │
+                   └───────────┘
+
+Node Connection Guide: 
+
+CheckpointLoaderSimple
+        │
+        ├── MODEL ───────────────→ KSampler
+        │
+        ├── CLIP ──→ CLIPTextEncode Positive ─→ KSampler
+        │
+        ├── CLIP ──→ CLIPTextEncode Negative ─→ KSampler
+        │
+        └── VAE ────────────────────────────────→ VAEDecode
+
+EmptyLatentImage ───────────────────────────────→ KSampler
+
+KSampler
+   ↓
+VAEDecode
+   ↓
+SaveImage
+
