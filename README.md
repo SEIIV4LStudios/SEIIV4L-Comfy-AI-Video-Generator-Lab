@@ -244,7 +244,13 @@ can significantly affect generation.
     - Create Video
     - Save Video
 
+# Component connection Chart
+    *the diagram shows how the basic components should connect o each other!
+
+    
 That's the system.
+
+ *At this point you have the skills to create a basic AI text to video Generator utilizing those components*
 
 # AI Generator Performance
 
