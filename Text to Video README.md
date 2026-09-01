@@ -280,7 +280,8 @@ can significantly affect generation.
   ↓
   eventually streaming
 
-  *Spotted a flowin in the infrastructure workflow pattern bottleneck using consensus client/execution client explanation flow reveals
+  Trouble Shoot 1:
+  *Spotted a flaw in in the infrastructure workflow, pattern bottleneck using consensus client/execution client explanation flow reveals
   Every additional blocking validation layer creates:*
   
     decision
@@ -330,4 +331,37 @@ ONE STATE AUTHORITY
      ↓
   Wan I2V
 
-# Scene Inversion
+# Scene Inversion (function here)
+
+Trouble Shoot 2:
+    * Component check, find the essential component comparison points: *
+      - Our original SD1.5 foundation had a Checkpoint Loader. That single checkpoint secretly gave us three major components at once diffusion model/UNet + CLIP text encoder + VAE together.
+          Load Chackpoint:
+            - MODEL     
+            - CLIP text encoder
+            - VAE
+
+  Wan is built differently. Instead of:
+
+  Checkpoint:
+    Model
+    CLIP
+    VAE
+
+Wan does:
+
+    Load Diffusion Model
+        +
+    Load CLIP/Text Encoder
+        +
+    Load VAE
+    
+  * Those three separate loaders collectively replace the checkpoint loader. *
+        - The official Wan 2.2 workflow confirms Wan 2.2 14B T2V uses separate:
+    
+
+
+
+
+
+  
