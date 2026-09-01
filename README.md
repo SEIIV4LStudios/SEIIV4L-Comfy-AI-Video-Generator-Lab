@@ -135,33 +135,116 @@ Then the at conditioning goes into the sampler.
   - composition
   - starting frame
 
-# Latent Preparation Node - (Wan22ImageToVideoLatent)
+# Video Latent - (Wan22ImageToVideoLatent)
     (compressed internal representation of the image/video data that the diffusion model works with.)
   - performs much of its generation in a mathematical representation called latent space
   - 
-- Essentially:                                                                                                                                    
+- Essentially:
 
-  Input Image                                                                                                                                            
-        ↓
-  Wan22ImageToVideoLatent
-        ↓      
-  Creates / prepares latent video representation                                                                    
-        ↓                                                                                                                                  
-  KSampler / Wan 2.2 diffusion process
-        ↓                                                                                                                                      
-  Generated video frames
+  Starting image
+  +
+  video dimensions
+  +
+  frame information
+  +
+  Wan conditioning
 
- or
+  in one function turns into (Video latent) see below:
 
- IMAGE
-↓
-Wan Image-to-Video Latent
-↓
-AI-compatible video representation
+     IMAGE
+  ↓
+  Wan Image-to-Video Latent
+  ↓
+  AI-compatible video representation
 
-or 
+# Ksampler - the generation engine of the workflow.
+    - node where the actual generative process really comes together.
+    - It gradually transforms noise toward something matching the instructions.
+    
 
-
-
-
+It receives components like:
+   
+  Diffusion MODEL (Brains / neural network)
+  +
+  POSITIVE PROMPT (Prompt text: whats should happen/what to expext)
+  +
+  NEGATIVE PROMPT (Whats not included / what we dont want)
+  +
+  STARTING LATENT (Video Representation/compressed data function works with)
+  +
+  SEED 
+  +
+  STEPS
+  +
+  SAMPLER SETTINGS (Ensures that Different model architectures expect different sampling behavior.)
   
+*and this ksampler function performs the diffusion process.*
+
+settings such as:
+
+  Steps
+  CFG
+  Seed
+  Sampler
+  Scheduler
+
+can significantly affect generation.
+
+# Load VAE - a translator, handles translation between pixels, frames, and videos
+
+  Think of it as a translator:
+  Pixel space
+  ↔
+  Latent space
+
+# Vae Decode - where the mathematical representation becomes visible imagery.
+    - It's generated latent information.
+    - what we have still isn't really the final video you watch.
+    - VAE Decode performs:
+
+  Generated latent:
+       ↓
+       VAE
+       ↓
+  Actual image frames
+
+# Create Video - assembles Frames according to a frame rate into video.
+  Example:`
+    16 FPS
+    24 FPS
+    30 FPS
+  into  
+    video
+
+# Save Video - handles the output So the workflow has a clear endpoint.
+  Example:
+    Generated video
+        ↓
+   filename / directory / format
+        ↓
+    disk
+
+# Architecture of infrastructure:
+    -  The architecture actually has five major subsystems:
+  # INPUT
+    - Load Image
+    - Prompt
+    - Negative Prompt
+  # UNDERSTANDING
+    - Text Encoder
+    - Image/Video conditioning
+  # GENERATION
+    - Wan 2.2
+    - ModelSampling
+    - KSampler
+  # TRANSLATION
+    - VAE
+    - VAE Decode
+  #OUTPUT
+    - Create Video
+    - Save Video
+
+That's the system.
+
+# AI Generator Performance
+
