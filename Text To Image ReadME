@@ -1,6 +1,8 @@
 SEIIV4L-Comfy-AI-Video-Generator-Lab
  # Text to Image ReadMe
    - Text to image pipelne is the basic foundation!
+   - Model: v1-5-pruned-emaonly-fp16.safetensors
+   - original working foundation
 
 # Stable Text to Image Pipeline 
                  ┌────────────────────────────┐
