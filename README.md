@@ -247,13 +247,64 @@ can significantly affect generation.
 # Component connection Chart
     *the diagram shows how the basic components should connect to each other! 
 
-    Click the link below:
-
-https://github.com/SEIIV4LStudios/SEIIV4L-Comfy-AI-Video-Generator-Lab/blob/0d9564a8cd6e6562cc6ca203b34ae902c07095b2/text%20to%20video%20basic%20pipeline.pdf
+      Click the link below:
+  *https://github.com/SEIIV4LStudios/SEIIV4L-Comfy-AI-Video-Generator-Lab/blob/0d9564a8cd6e6562cc6ca203b34ae902c07095b2/text%20to%20video%20basic%20pipeline.pdf*
     
-That's the system.
-
- *At this point you have the skills to create a basic AI text to video Generator utilizing those components*
+  That's the system.
+      *At this point you have the skills to create a basic AI text to video Generator utilizing those components*
 
 # AI Generator Performance
+    *Now that you have your AI video engine generator, you must understand There are individual stages to performance/system productivity.*
+  
+  For example:
+  Load model     → RAM / VRAM / disk
+  Text encode    → CPU/GPU compute
+  Image encode   → compute + memory
+  KSampler       → HUGE compute load
+  VAE Decode     → compute + memory
+  Video encode   → CPU/GPU encoding
+  Save           → disk
+
+*we're trying to move toward:*
+
+  generate
+  ↓
+  generate faster
+  ↓
+  short video
+  ↓
+  continuous videos
+  ↓
+  near-real-time generation
+  ↓
+  eventually streaming
+
+  *Spotted a flowin in the infrastructure workflow pattern bottleneck using consensus client/execution client explanation flow reveals
+  Every additional blocking validation layer creates:*
+  
+  decision
+   ↓
+  wait
+   ↓
+  decision
+   ↓
+  wait
+   ↓
+  generation
+   ↓
+  wait
+   ↓
+  validation
+the design uses consensus client's for too many different responsibilities.
+Instead we aim to ensure there is one Coordinated State Of Authority:
+
+ONE STATE AUTHORITY
+        │
+        ├───────────────┐
+        ↓               ↓
+    Generation     Observability
+        ↓               ↑
+    Quality Check ───────┘
+
+Much faster.
 
