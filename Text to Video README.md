@@ -72,7 +72,6 @@ OUTPUT
 Instead of putting all of that into one giant black box, ComfyUI exposes them in an local environment as separate components. 
 When these components are integrated into a complete local workflow the system can generate AI video content from prompts and source images.
  
- 
 ComfyUI + nodes + model = generation system
 output = AI-generated content
 
@@ -103,7 +102,6 @@ Wan 2.2 = machine inside factory
      ↓
   AI-understandable instructions
     *This is why just feeding English text directly into the diffusion model isn't enough.
-
   properties of the text encoder:
   
     - Positive Text Encoder -  This tells the generator What should exist.
@@ -333,11 +331,39 @@ ONE STATE AUTHORITY
 
 # Scene Inversion (function here)
 
+# Amazon AWS (EC2) - on-demand, scalable computing capacity in the Amazon Web Services (AWS) Cloud.
+   - use Amazon EC2 to launch as many or as few virtual servers as you need, configure security and networking, and manage storage.
+   - You can add capacity (scale up) to handle compute-heavy tasks, such as monthly or yearly processes, or spikes in website traffic. When usage decreases, you can reduce capacity (scale down) again.
 
-    
+*Amazon AWS integrated with this workflow. To improve performance, productivity, and authorization in workflow automations. Amazon EC2 provides the following features:
+   
+    Instances:
+      Virtual servers.
+    Instance types:
+      Various configurations of CPU, memory, storage, networking capacity , and graphics hardware for your instances.
+    Amazon Machine Images (AMIs):
+      Preconfigured templates for your instances that package the components you need for your server (including the operating system and additional software).
+    Amazon EBS volumes:
+      Persistent storage volumes for your data using Amazon Elastic Block Store (Amazon EBS).
+    Instance store volumes:
+      Storage volumes for temporary data that is deleted when you stop, hibernate, or terminate your instance.
+    Key pairs:
+      Secure login information for your instances. AWS stores the public key and you store the private key in a secure place.
+    Security groups:
+      A virtual firewall that allows you to specify the protocols, ports, and source IP ranges that can reach your instances, and the destination IP ranges to which your instances can         connect
+  
+*Amazon EC2 supports the processing, storage, and transmission of credit card data by a merchant or service provider, and has been validated as being compliant with Payment Card Industry (PCI) Data Security Standard (DSS). For more information about PCI DSS, including how to request a copy of the AWS PCI Compliance Package, see PCI DSS Level*
 
+*Services to use with Amazon EC2:
+    - AWS Systems Manager - Perform operations at scale on EC2 instances with this secure end-to-end management solution.
+    - EC2 Image Builder - Automate the creation, management, and deployment of customized, secure, and up-to-date server images.
+    - Amazon CloudWatch - Monitor your instances and Amazon EBS volumes.
+    - Amazon GuardDuty - Detect potentially unauthorized or malicious use of your EC2 instances.
 
-
+You can use other AWS services with the instances that you deploy using Amazon EC2.SEE
+services to use with Amazon. Shttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html*
+    - *See additional services and Pricing & Billing.*
+    - *see Getting started with amazon EC2: (link)   *
 
 
   
